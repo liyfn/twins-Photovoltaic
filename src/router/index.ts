@@ -7,7 +7,7 @@
  * @FilePath: \three-wind\src\router\index.ts
  * Copyright 2024 Shenzhen Hopewind Electric Co., Ltd, All Rights Reserved. 
  */
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 
 const routes = [
   {
@@ -32,7 +32,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes,
 });
 
