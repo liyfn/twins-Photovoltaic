@@ -10,8 +10,10 @@
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/addons/loaders/DRACOLoader.js";
 
+const base = import.meta.env.BASE_URL;
+
 const draco = new DRACOLoader();
-draco.setDecoderPath("/draco/"); // 根据pubic里面解压文件结构设置
+draco.setDecoderPath(`${base}draco/`); // 根据pubic里面解压文件结构设置
 
 export default function modelLoader(
   url: string,
@@ -20,7 +22,9 @@ export default function modelLoader(
   if (url.endsWith(".glb") || url.endsWith(".gltf")) {
     const loader = new GLTFLoader();
     loader.setDRACOLoader(draco);
-    loader.load(url, (glb) => {
+    // 自动拼接 base 路径（兼容 GitHub Pages 等非根路径部署）
+    const fullUrl = url.startsWith("http") ? url : `${base}${url.replace(/^\//, "")}`;
+    loader.load(fullUrl, (glb) => {
       callback(glb);
     });
     return loader;
