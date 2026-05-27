@@ -16,6 +16,7 @@ import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: "/twins-Photovoltaic/",
   plugins: [
     vue(),
     AutoImport({
